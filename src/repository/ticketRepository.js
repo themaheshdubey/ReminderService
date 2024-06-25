@@ -1,4 +1,6 @@
 const {NotificationTicket} = require('../models/index');
+const { Op } = require("sequelize");
+
 
 class TicketRepository {
 
@@ -10,6 +12,23 @@ class TicketRepository {
             throw error;
         }
     }
+
+    async get(filter) {
+        try {
+            const tickets = await NotificationTicket.findAll({
+                // where: {
+                //     status: filter.status,
+                //     notificationTime: {
+                //         [Op.lte]: new Date()
+                //     }
+                // }
+            });
+            return tickets;
+        } catch (error) {
+            throw error;
+        }
+    }
+
 
 }
 

@@ -26,7 +26,19 @@ async function createNotification(data) {
 }
 
 
+const fetchPendingEmails = async () => {
+    try {
+        const response = await repo.get({status: "PENDING"});
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
 module.exports = {
     sendBasicEmail,
-    createNotification
+    createNotification,
+    fetchPendingEmails
 }
