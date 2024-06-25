@@ -14,7 +14,14 @@ function setUpJobs() {
                 to: email.recepientEmail,
                 subject: email.subject,
                 text: email.content
-            });
+            } , async (err, data) => {
+                if(err) {
+                    console.log(err);
+                } else {
+                    console.log(data);
+                    await service.updateTicket(email.id, {status: "SUCCESS"});
+                }
+                });
         });
 
 
